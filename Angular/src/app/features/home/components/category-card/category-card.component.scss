@@ -1,0 +1,102 @@
+.card {
+  width: 17.125rem;
+  height: 13.375rem;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  background-color: var(--accent-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: var(--primary-color);
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+  }
+
+  &:hover:before {
+    transform: scale(21);
+  }
+
+  &:hover {
+    color: white;
+
+    p {
+      transition: all 0.3s ease-out;
+      color: white;
+    }
+    i {
+      color: white;
+    }
+
+    .categoryName {
+      color: white;
+    }
+
+    .categoryJobs {
+      color: white;
+    }
+  }
+
+  i {
+    color: var(--primary-color);
+    font-size: 2.3rem;
+  }
+
+  .categoryName {
+    color: var(--text-color);
+    margin-top: 2.2rem;
+    font-family: var(--font-clash-variable);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.3rem;
+  }
+ 
+  .categoryJobs {
+    font-family: var(--font-clash-regular);
+    color: var(--grey-color);
+    font-weight: 400;
+    font-size: 1rem;
+    margin-top: 1.2rem;
+
+    i {
+      font-size: 20px;
+    }
+  }
+
+  &.selected {
+    background-color: var(--primary-color);
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:before {
+      transform: scale(21);
+      transition: transform 0.25s ease-out;
+    }
+
+    i {
+      color: white;
+    }
+
+    .categoryName,
+    .categoryJobs {
+      color: white;
+      transition: color 0.3s ease-out;
+    }
+  }
+}

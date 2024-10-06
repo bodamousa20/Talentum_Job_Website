@@ -1,0 +1,224 @@
+<!-- Hero Image -->
+<div class="row hero">
+  <div class="column heroText">
+    <!-- Title -->
+    <span class="darkText">Discover</span>
+    <span class="darkText">More Than</span>
+    <span class="primaryText">5000+ Jobs</span>
+    <img class="curlyLine" src="assets\images\curly-line.svg" />
+    <!-- Label -->
+    <span class="labelText mt-25">Where Talent Meets Opportunity !</span>
+    <!-- Search Bar -->
+    <div class="searchBar row mt-15 align-center gap-2">
+      <div class="row align-center gap-05">
+        <!-- Job Title -->
+        <i
+          class="pi pi-search"
+          style="color: var(--text-color); font-size: 1.5rem"
+        ></i>
+        <div class="floatingLabelContent">
+          <input
+            #jobTitleInput
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+            style="padding-right: 3rem"
+          />
+          <label class="floatingLabel">Job Title or Keyword</label>
+        </div>
+      </div>
+      <!-- City -->
+      <div class="row align-center gap-05"
+      style="margin-right: 2rem"
+      >
+        <i
+          class="pi pi-map-marker"
+          style="color: var(--text-color); font-size: 1.5rem"
+        ></i>
+        <div class="floatingLabelContent">
+          <select
+            #cityInput
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            style="padding-right: 3rem"
+          >
+            <option value="" disabled [selected]="true">Select City</option>
+            <option *ngFor="let city of cities" value="{{ city }}">
+              {{ city }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <!-- Search Button -->
+      <app-animated-button
+        label="Search my Job"
+        width="13rem"
+        height="3.6rem"
+        backgroundColor="var(--primary-color)"
+        fontSize="1.1rem"
+        fontWeight="700"
+        (click)="onSearch()"
+      ></app-animated-button>
+    </div>
+    <div class="popular">
+      Popular : UI Designer, Web Developer, HR Recruiter
+    </div>
+  </div>
+
+  <img
+    src="../../../../assets/images/hero-person.svg"
+    alt=""
+    class="heroImage"
+  />
+  <img
+    src="../../../../assets/images/rectangle.svg"
+    alt=""
+    class="heroImage"
+    style="left: 64rem"
+  />
+</div>
+<!-- How Talentum Works -->
+<div class="column how">
+  <div class="full-center heading">
+    <p>How Talentum Works</p>
+  </div>
+  <div class="row full-center howIcons">
+    <span class="icon">
+      <i class="pi pi-user-plus"></i>
+    </span>
+    <div class="arrow" style="margin: 0 1.5rem 5rem 1rem">
+      <img src="assets\images\curly-arrow-down.svg" alt="arrow" />
+    </div>
+    <span class="icon" style="background-color: var(--primary-color)">
+      <i class="pi pi-cloud-upload" style="color: white"></i>
+    </span>
+    <div class="arrow" style="margin: 5rem 1.5rem 0 1rem">
+      <img src="assets\images\curly-arrow-up.svg" alt="arrow" />
+    </div>
+    <span class="icon">
+      <i class="pi pi-search-plus"></i>
+    </span>
+    <div class="arrow" style="margin: 0 1.5rem 5rem 1rem">
+      <img src="assets\images\curly-arrow-down.svg" alt="arrow" />
+    </div>
+    <span class="icon">
+      <i class="pi pi-verified"></i>
+    </span>
+  </div>
+
+  <div class="row howText">
+    <div class="text" style="margin-left: 3rem">
+      <span class="title">Create account</span>
+      <span class="subTitle"
+        >Unlock unlimited access to jobs and opportunities!</span
+      >
+    </div>
+    <div class="text" style="margin-left: 3rem">
+      <span class="title">Upload your CV/Resume</span>
+      <span class="subTitle"
+        >Showcase your qualifications and stand out from the crowd.</span
+      >
+    </div>
+    <div class="text" style="margin-left: 1.5rem">
+      <span class="title">Find a suitable job</span>
+      <span class="subTitle"
+        >Find the perfect job that aligns with your passion and expertise.</span
+      >
+    </div>
+    <div class="text" style="margin-right: 1rem">
+      <span class="title">Apply to job</span>
+      <span class="subTitle"
+        >Submit your applications and take the next step in your career
+        journey.</span
+      >
+    </div>
+  </div>
+</div>
+<!-- Home Content -->
+<div class="column homeContent">
+  <!-- Categories Section -->ح
+  <section class="categories" id="categories">
+    <div class="row space-between align-center sectionHeading">
+      <!-- Title -->
+      <div class="row gap-1 sectionTitle">
+        <span class="darkText">Explore by</span>
+        <span class="primaryText">Category</span>
+      </div>
+      <!-- show all -->
+      <div class="full-center showAllButton" (click)="showAll()">
+        <span>{{ buttonLabel }} all Categories</span>
+        <i class="pi {{ buttonIcon }}"></i>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="gridView-4">
+      <app-category-card
+        *ngFor="
+          let category of categories
+            | slice : 0 : (showAllCategories ? categories.length : 8);
+          let index = index
+        "
+        [category]="category"
+        (click)="scrollToElement('featuredJobs')"
+        (onSelect)="onCategorySelected(category.id!, index)"
+        [isSelected]="selectedCardIndex === index"
+      ></app-category-card>
+    </div>
+  </section>
+
+  <!-- Featured Jobs Section  -->
+  <section class="featuredJobs" id="featuredJobs">
+    <div class="row space-between align-center sectionHeading">
+      <!-- Title -->
+      <div class="row gap-1 sectionTitle">
+        <span class="darkText">Featured</span>
+        <span class="primaryText">Jobs</span>
+      </div>
+      <!-- show all -->
+      <div class="full-center showAllButton" routerLink="/jobs">
+        <span>Show all Jobs</span>
+        <i class="pi pi-arrow-right"></i>
+      </div>
+    </div>
+
+    <!-- Featured Jobs -->
+    <div class="gridView-4">
+      <app-job-card
+        *ngFor="let job of featuredJobs | slice : 0 : 12; let index = index"
+        [isVertical]="true"
+        [job]="job"
+      ></app-job-card>
+    </div>
+
+    <!-- Featured Jobs -->
+  </section>
+
+  <!-- Latest Jobs Section -->
+  <section class="latestJobs" id="latestJobs">
+    <div class="row space-between align-center sectionHeading">
+      <!-- Title -->
+      <div class="row gap-1 sectionTitle">
+        <span class="darkText">Latest </span>
+        <span class="primaryText">jobs open</span>
+      </div>
+      <!-- show all -->
+      <div class="full-center showAllButton" routerLink="/jobs">
+        <span>Show all Jobs</span>
+        <i class="pi pi-arrow-right"></i>
+      </div>
+    </div>
+
+    <!-- Latest Jobs -->
+    <div class="gridView-2">
+      <app-job-card
+        *ngFor="let job of featuredJobs | slice : 0 : 8; let index = index"
+        [isVertical]="false"
+        [job]="job"
+        backgroundColor="white"
+      ></app-job-card>
+    </div>
+  </section>
+</div>

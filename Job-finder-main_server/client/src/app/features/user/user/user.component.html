@@ -1,0 +1,158 @@
+<div class="pageHeading">
+  <!-- user profile picture -->
+  <div class="full-center userProfilePic">
+    <img class="image" src="assets\images\user.svg" />
+  </div>
+</div>
+<div class="userDeclaration">
+  <h1 class="userName">
+    {{ user ? user.firstName + " " + user.lastName : "" }}
+  </h1>
+  <!-- <h3 class="title">{{ user.jobTitle }}</h3> -->
+  <h3 class="title">{{ "Software Developer" }}</h3>
+</div>
+
+<div class="content">
+  <!-- Details and Job Overview -->
+  <div class="column userInfo mt-15">
+    <!-- Left Column: User Details -->
+    <div class="column gap-1 basicInfo" id="basicInfo">
+      <div class="row gap-1 sectionTitle">
+        <i class="pi pi-user"></i>
+        <span>Basic Information</span>
+      </div>
+      <div class="infoGrid">
+        <!-- Username -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-at"></i>
+            <span>Username</span>
+          </span>
+          <span class="subTitle">&#64;{{ user ? user.username : "" }}</span>
+        </div>
+        <!-- Email Address -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-envelope"></i>
+            <span>Email Address</span>
+          </span>
+          <span class="subTitle">{{ user ? user.email : "" }}</span>
+        </div>
+        <!-- Phone Number -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-mobile"></i>
+            <span>Phone Number</span>
+          </span>
+          <span class="subTitle">{{ user ? user.phoneNumber : "" }}</span>
+        </div>
+        <!-- Date of Birth -->
+        <div class="infoItem">
+          <span class="title">
+            <i class="pi pi-mars"></i>
+            <span>Date of Birth</span>
+          </span>
+          <span class="subTitle">{{ dob }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Applied Jobs -->
+    <div *ngIf="userId === storage.getUserId()" id="appliedJobs">
+      <div class="title">Job Applications</div>
+      <!-- applied jobs -->
+      <div class="column gap-1 jobs">
+        <app-full-job-card
+          *ngFor="let jobApplication of jobApplications"
+          [job]="jobApplication!.job"
+          [isAppliedTo]="true"
+        ></app-full-job-card>
+      </div>
+
+      <!-- no applied jobs -->
+      <div
+        *ngIf="jobApplications ? jobApplications.length == 0 : true"
+        class="column full-center gap-2 noSavedJobsCard"
+      >
+        <div class="column full-center gap-2 noSavedJobsContent">
+          <span class="sentence" *ngIf="userId === storage.getUserId()"
+            >You Haven't Applied to Any Jobs yet!</span
+          >
+          <img src="assets/images/No-Added.svg" />
+          <app-animated-button
+            *ngIf="userId === storage.getUserId()"
+            label="Explore Jobs Now!"
+            width="21.75rem"
+            height="2.8rem"
+            backgroundColor="var(--primary-color)"
+            fontSize="1.1rem"
+            fontWeight="700"
+            (click)="goToJobsPage()"
+          ></app-animated-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved Jobs -->
+    <div *ngIf="userId === storage.getUserId()" id="savedJobs">
+      <div class="title">Saved Jobs</div>
+      <!-- saved jobs -->
+      <div class="column gap-1 jobs">
+        <app-full-job-card
+          *ngFor="let job of savedJobs"
+          [job]="job"
+        ></app-full-job-card>
+      </div>
+
+      <!-- no saved jobs -->
+      <div
+        *ngIf="savedJobs ? savedJobs.length == 0 : true"
+        class="column full-center gap-2 noSavedJobsCard"
+      >
+        <div class="column full-center gap-2 noSavedJobsContent">
+          <div class="column gap-2 full-center sentence">
+            <i class="pi pi-bookmark"></i>
+            <span *ngIf="userId === storage.getUserId()"
+              >You have No Saved Jobs!</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: User Navigation -->
+  <div class="userNav">
+    <div class="column gap-1 userNavCard">
+      <div
+        class="navTile"
+        (click)="goTo('basicInfo')"
+        style="border-top-right-radius: 1.5rem; border-top-left-radius: 1.5rem"
+
+      >
+        <i class="pi pi-address-book"></i>
+        <span>Basic Information</span>
+      </div>
+      <div
+        *ngIf="userId === storage.getUserId()"
+        class="navTile"
+        (click)="goTo('appliedJobs')"
+      >
+        <i class="pi pi-check-circle"></i>
+        <span>Applied Jobs</span>
+      </div>
+      <div
+        *ngIf="userId === storage.getUserId()"
+        class="navTile"
+        (click)="goTo('savedJobs')"
+        style="
+          border-bottom-right-radius: 1.5rem;
+          border-bottom-left-radius: 1.5rem;
+        "
+      >
+        <i class="pi pi-bookmark"></i>
+        <span>Saved Jobs</span>
+      </div>
+    </div>
+  </div>
+</div>

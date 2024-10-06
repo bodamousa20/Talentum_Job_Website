@@ -1,0 +1,204 @@
+<div class="background">
+  <div class="cardContent column gap-2">
+    <h1 class="welcome">Apply to Job</h1>
+    <form [formGroup]="applyToJobForm">
+      <!--  Inputs -->
+      <div class="inputs">
+        <!-- First Name -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['firstName'].invalid &&
+              (applyToJobFormControls['lastName'].dirty ||
+                applyToJobFormControls['firstName'].touched)
+          }"
+          class="floatingLabelContent"
+        >
+          <input
+            formControlName="firstName"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+            pKeyFilter="alpha"
+          />
+          <label class="floatingLabel">First Name</label>
+        </div>
+
+        <!-- Last Name -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['lastName'].invalid &&
+              (applyToJobFormControls['lastName'].dirty ||
+                applyToJobFormControls['lastName'].touched)
+          }"
+          class="floatingLabelContent"
+        >
+          <input
+            formControlName="lastName"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+            pKeyFilter="alpha"
+          />
+          <label class="floatingLabel">Last Name</label>
+        </div>
+
+        <!-- Email -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['email'].invalid &&
+              (applyToJobFormControls['email'].dirty ||
+                applyToJobFormControls['email'].touched)
+          }"
+          class="floatingLabelContent"
+        >
+          <input
+            formControlName="email"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">Email</label>
+        </div>
+
+        <!-- Phone Number -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['phoneNumber'].invalid &&
+              (applyToJobFormControls['phoneNumber'].dirty ||
+                applyToJobFormControls['phoneNumber'].touched)
+          }"
+          class="floatingLabelContent"
+        >
+          <input
+            formControlName="phoneNumber"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+            pKeyFilter="int"
+          />
+          <label class="floatingLabel">Phone Number</label>
+        </div>
+
+        <!-- Country -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['country'].invalid &&
+              (applyToJobFormControls['country'].dirty ||
+                applyToJobFormControls['country'].touched)
+          }"
+          class="floatingLabelContent"
+        >
+          <input
+            formControlName="country"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">Country</label>
+        </div>
+
+        <!-- Available Start Date -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['availableStartDate'].invalid &&
+              (applyToJobFormControls['availableStartDate'].dirty ||
+                applyToJobFormControls['availableStartDate'].touched)
+          }"
+          class="floatingLabelContent"
+        >
+          <input
+            formControlName="availableStartDate"
+            class="floatingLabelInput"
+            type="date"
+            placeholder=""
+          />
+          <label class="floatingLabel">Available Start Date</label>
+        </div>
+      </div>
+      <!-- Text Areas -->
+      <div class="textAreas">
+        <!-- Reason Of Hire -->
+        <div class="floatingLabelContent">
+          <textarea
+            formControlName="reasonOfHire"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          ></textarea>
+          <label class="floatingLabel">Why Should We Hire You</label>
+        </div>
+
+        <!-- Qualifications -->
+        <div class="floatingLabelContent">
+          <textarea
+            formControlName="qualifications"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          ></textarea>
+          <label class="floatingLabel">Tell Us About Your Qualifications</label>
+        </div>
+        <!-- LinkedIn -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['linkedIn'].invalid &&
+              (applyToJobFormControls['linkedIn'].dirty ||
+                applyToJobFormControls['linkedIn'].touched)
+          }"
+          class="floatingLabelContent"
+        >
+          <input
+            formControlName="linkedIn"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">LinkedIn</label>
+        </div>
+
+        <!-- Github -->
+        <div
+          [ngClass]="{
+            inputError:
+              applyToJobFormControls['github'].invalid &&
+              (applyToJobFormControls['github'].dirty ||
+                applyToJobFormControls['github'].touched)
+          }"
+          class="floatingLabelContent"
+        >
+          <input
+            formControlName="github"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+          />
+          <label class="floatingLabel">Github</label>
+        </div>
+      </div>
+    </form>
+    <app-animated-button
+      label="Apply"
+      type="submit"
+      width="100%"
+      height="2.8rem"
+      backgroundColor="var(--primary-color)"
+      fontSize="1.1rem"
+      fontWeight="700"
+      (click)="onApplyToJob()"
+    ></app-animated-button>
+  </div>
+</div>

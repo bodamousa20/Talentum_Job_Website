@@ -1,0 +1,236 @@
+.hero {
+  width: 100%;
+  position: relative;
+  height: 48.15rem;
+  overflow: hidden;
+  background: url("../../../../assets/images/hero-pattern.svg") no-repeat;
+  background-size: auto;
+  background-position-x: 155%;
+  background-color: var(--accent-color);
+
+  .heroText {
+    position: absolute;
+    align-items: left;
+    font-weight: bolder;
+    font-size: 72px;
+    margin-left: 7.7rem;
+    margin-top: 5.5rem;
+  }
+
+  .heroImage {
+    position: absolute;
+    right: 8rem;
+    top: 4.4rem;
+    height: 100%;
+  }
+}
+
+.how {
+  display: flex;
+  width: 100%;
+  height: 23rem;
+  padding-top: 1.5rem;
+  .heading {
+    font-family: var(--font-clash-variable);
+    color: var(--text-color);
+    display: flex;
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  .howIcons {
+    display: flex;
+    padding-right: 2rem;
+    .arrow {
+      img {
+        width: 16rem;
+        height: 6rem;
+      }
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 4.5rem;
+      i {
+        color: var(--primary-color);
+        font-weight: 400;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .text {
+    font-family: var(--font-red-hat);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 2rem;
+    .title {
+      color: var(--text-color);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .subTitle {
+      color: #515b6fa8;
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: wrap;
+      overflow: visible;
+    }
+  }
+}
+
+.darkText {
+  font-family: "ClashDisplay-Semibold";
+  color: var(--text-color);
+}
+
+.primaryText {
+  font-family: "ClashDisplay-Semibold";
+  color: var(--primary-color);
+}
+
+.labelText {
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 32px;
+  color: var(--grey-color);
+}
+
+.textOverlay {
+  position: absolute;
+  top: 16%;
+  left: 8%;
+}
+
+.curlyLine {
+  width: 28rem;
+}
+
+.searchBar {
+  position: relative;
+  z-index: 1;
+  width: 54rem;
+  height: 5.5rem;
+  padding: 1rem 1rem 1rem 2rem;
+  background-color: white;
+  box-shadow: 10px 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20rem;
+}
+
+.popular {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #515B6F;
+  font-family: var(--font-red-hat);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.sectionHeading {
+  margin-top: 4.5rem;
+  margin-bottom: 1rem;
+  padding: 0 0.9rem;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+}
+
+.showAllButton {
+  background-color: transparent;
+  font-family: var(--font-red-hat);
+  color: var(--primary-color);
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+  i {
+    background-color: var(--primary-color);
+    margin-left: 0.4rem;
+    padding: 0.35rem;
+    border-radius: 2rem;
+    color: white;
+  }
+}
+
+.gridView-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.gridView-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.categories {
+  padding: 0 7.8rem;
+}
+
+.featuredJobs {
+  padding: 0 7.8rem;
+  margin-bottom: 4.5rem;
+}
+
+.latestJobs {
+  background-image: url("../../../../assets/images/hero-pattern.svg");
+  background-position: 270% 100%;
+  padding: 0 7.8rem 3rem 7.8rem;
+  background-color: var(--accent-color);
+}
+
+.floatingLabelContent {
+  position: relative;
+}
+.floatingLabel {
+  position: absolute;
+  font-family: var(--font-red-hat);
+  color: #7c8493b4;
+  font-weight: 500;
+  font-size: 1.2rem;
+  pointer-events: none;
+  top: 11px;
+  padding: 0 5px;
+  background: white;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.floatingLabelInput {
+  width: 100%;
+  font-family: var(--font-red-hat);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: block;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #d6ddeb;
+  &:focus {
+    border-bottom: 1px solid var(--primary-color);
+    outline: none;
+    ~ .floatingLabel {
+      top: -8px;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.floatingLabelInput:not(:placeholder-shown) ~ .floatingLabel {
+  top: -8px;
+  font-size: 1rem;
+}

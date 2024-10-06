@@ -1,0 +1,226 @@
+<app-page-header pageTitle="Job Details" curlyLineWidth="30"> </app-page-header>
+
+<div class="content">
+  <!-- Job Title  -->
+  <div class="jobHeader">
+    <!-- Time and save button -->
+    <div class="row space-between timeAndSave">
+      <!-- <div class="darkText timeAdded">15 mins ago</div> -->
+      <div class="darkText timeAdded">
+        {{ postedIn }}
+      </div>
+
+      <!-- bookmark button-->
+      <div *ngIf="!(role === 'company')" class="saveButton">
+        <app-save-button
+          (click)="onSaveJob()"
+          [isChecked]="isBookmarked"
+          *ngIf="!isAppliedTo"
+        ></app-save-button>
+
+        <!-- Already Applied Tag -->
+        <div *ngIf="isAppliedTo" class="darkText appliedTag full-center">
+          Applied
+        </div>
+      </div>
+    </div>
+    <!-- company and Job Title -->
+    <div class="row gap-2">
+      <!-- Company Logo -->
+      <div class="companyLogoContainer">
+        <img src="{{ job.company!.logo }}" alt="Company" />
+      </div>
+
+      <!-- company data -->
+      <div class="column gap-05">
+        <!-- Job Title -->
+        <div class="darkText jobTitle">{{ job.title }}</div>
+
+        <!-- Company Name -->
+        <div
+          routerLink="../../company/{{ job.company!.id }}"
+          class="row gap-025 align-center company"
+        >
+          <i class="pi pi-verified"></i>
+          <span>{{ job.company.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job data -->
+    <div class="row space-between mt-25">
+      <div class="row jobData">
+        <!-- Category -->
+        <div class="data">
+          <i class="pi {{ job.category.icon }}"></i>
+          <span>{{ job.category.name }}</span>
+        </div>
+        <!-- Job Type -->
+        <div class="data">
+          <i class="pi pi-clock"></i>
+          <span>{{ job.type }}</span>
+        </div>
+        <!-- Salary -->
+        <div class="data">
+          <i class="pi pi-wallet"></i>
+          <span>{{ job.salary }}</span>
+        </div>
+        <!-- Location -->
+        <div class="data">
+          <i class="pi pi-map-marker"></i>
+          <span class="">{{ job.location }}</span>
+        </div>
+      </div>
+      <app-animated-button
+        label="Apply to Job"
+        width="20.75rem"
+        height="2.8rem"
+        backgroundColor="var(--primary-color)"
+        *ngIf="!isAppliedTo && role !== 'company'"
+        fontSize="1.1rem"
+        fontWeight="700"
+        (click)="onApplyToJob()"
+      ></app-animated-button>
+    </div>
+  </div>
+
+  <!-- Details and Job Overview -->
+  <div class="row jobInfo mt-15">
+    <!-- Left Column: Job Details -->
+    <div class="jobDetails">
+      <div class="column gap-1 jobDetailsCard">
+        <!-- Description -->
+        <div class="column gap-05 mb-15 detailsItem">
+          <div class="sectionTitle">Job Description</div>
+          <div class="sectionContent">
+            {{ job.description }}
+          </div>
+        </div>
+
+        <!-- Responsibilities -->
+        <div class="column gap-05 detailsItem">
+          <div class="sectionTitle">Responsibilities:</div>
+          <div class="sectionContent">
+            <ul>
+              <li
+                *ngFor="
+                  let responsibility of responsibilities;
+                  let index = index
+                "
+              >
+                {{ responsibilities[index] }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Qualifications -->
+        <div class="column gap-05 detailsItem">
+          <div class="sectionTitle">Qualifications:</div>
+          <div class="sectionContent">
+            <ul>
+              <li
+                *ngFor="let qualification of qualifications; let index = index"
+              >
+                {{ qualifications[index] }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Benefits -->
+        <div *ngIf="benefits" class="column gap-05 detailsItem">
+          <div class="sectionTitle">What we offer:</div>
+          <div class="sectionContent">
+            <ul>
+              <li *ngFor="let benefit of benefits; let index = index">
+                {{ benefits[index] }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="relatedJobs">
+        <div class="title">Related Jobs</div>
+        <div class="column gap-1">
+          <app-full-job-card *ngFor="let job of relatedJobs" [job]="job">
+          </app-full-job-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Job Overview -->
+    <div class="jobOverview">
+      <div class="column jobOverviewCard">
+        <div class="sectionTitle">Job Overview</div>
+
+        <!-- Job Title -->
+        <div class="overViewItem">
+          <i class="pi pi-briefcase icon"></i>
+          <div class="column">
+            <span class="title">Job Title</span>
+            <span class="subTitle">{{ job.title }}</span>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="overViewItem">
+          <i class="pi pi-wallet icon"></i>
+          <div class="column">
+            <span class="title">Category</span>
+            <span class="subTitle">
+              {{ job.category!.name }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Job Type -->
+        <div class="overViewItem">
+          <i class="pi pi-clock icon"></i>
+          <div class="column">
+            <span class="title">Job Type</span>
+            <span class="subTitle">{{ job.type }}</span>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="overViewItem">
+          <i class="pi pi-star icon"></i>
+          <div class="column">
+            <span class="title">Experience</span>
+            <span class="subTitle">{{ job.experience }}</span>
+          </div>
+        </div>
+
+        <!-- Salary -->
+        <div class="overViewItem">
+          <i class="pi pi-wallet icon"></i>
+          <div class="column">
+            <span class="title">Salary</span>
+            <span class="subTitle">{{ job.salary }}</span>
+          </div>
+        </div>
+
+        <!-- Gender -->
+        <div class="overViewItem">
+          <i class="pi pi-mars icon"></i>
+          <div class="column">
+            <span class="title">Gender</span>
+            <span class="subTitle">{{ job.gender }}</span>
+          </div>
+        </div>
+        <!-- Location -->
+        <div class="overViewItem">
+          <i class="pi pi-map-marker icon"></i>
+          <div class="column">
+            <span class="title">Location</span>
+            <span class="subTitle">{{ job.location }}</span>
+          </div>
+        </div>
+
+        <img src="assets\images\map.svg" />
+      </div>
+    </div>
+  </div>
+</div>

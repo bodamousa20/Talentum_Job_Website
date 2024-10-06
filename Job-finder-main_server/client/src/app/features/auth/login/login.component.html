@@ -1,0 +1,110 @@
+<div class="pattern">
+  <div class="column content-wrap">
+    <div class="logo full-center"><img src="assets/images/Logo.svg" /></div>
+    <h2 class="mt-15 welcome">Welcome Back !</h2>
+    <h2 class="subHeading">
+      Enter to get unlimited access to jobs and opportunities
+    </h2>
+
+    <form [formGroup]="loginForm" (submit)="login()">
+      <div class="login-form">
+        <!-- Email  -->
+        <div
+          class="floatingLabelContent"
+          [ngClass]="{
+            inputError:
+              loginFormControls['email'].invalid &&
+              (loginFormControls['email'].dirty ||
+                loginFormControls['email'].touched)
+          }"
+        >
+          <input
+            class="floatingLabelInput"
+            type="email"
+            formControlName="email"
+            [placeholder]="
+              loginFormControls['email'].touched &&
+              loginFormControls['email'].errors?.required
+                ? 'Email Address is required'
+                : ''
+            "
+          />
+          <label class="floatingLabel">Email Address</label>
+          <div
+            *ngIf="
+              loginFormControls['email'].invalid &&
+              loginFormControls['email'].dirty
+            "
+            class="errorMessage"
+          >
+            <small *ngIf="loginFormControls['email'].invalid"
+              >*Please enter a valid email address</small
+            >
+          </div>
+        </div>
+        <!-- Password -->
+        <div
+          class="floatingLabelContent"
+          [ngClass]="{
+            inputError:
+              loginFormControls['password'].invalid &&
+              (loginFormControls['password'].dirty ||
+                loginFormControls['password'].touched)
+          }"
+        >
+          <input
+            class="floatingLabelInput"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            [placeholder]="
+              loginFormControls['password'].touched &&
+              loginFormControls['password'].errors?.required
+                ? 'Password is required'
+                : ''
+            "
+          />
+          <label class="floatingLabel">Password</label>
+          <span class="toggleIcon" (click)="hideShowPass()">
+            <i class="pi {{ passwordIcon }}"></i>
+          </span>
+          <div
+            *ngIf="
+              loginFormControls['password'].invalid &&
+              (loginFormControls['password'].dirty ||
+                loginFormControls['password'].touched)
+            "
+            class="errorMessage"
+          >
+            <small *ngIf="loginFormControls['password'].dirty"
+              >*Minimum password length is 8 characters</small
+            >
+          </div>
+        </div>
+        <!-- remember me and forgot password-->
+        <div class="row mt-15 space-between">
+          <div class="row">
+            <input id="remember" type="checkbox" />
+            <label for="remember" class="remember-me">
+              <span></span>
+              Remember me
+              <ins><i>Remember me</i></ins>
+            </label>
+          </div>
+          <a href="#">Forgot Password ?</a>
+        </div>
+        <!-- Login Button -->
+        <div class="mt-15">
+          <app-animated-button
+            label="Log in"
+            width="100%"
+            height="3.5rem"
+            backgroundColor="var(--primary-color)"
+            fontSize="1.2rem"
+            fontWeight="900"
+            type="submit"
+          ></app-animated-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

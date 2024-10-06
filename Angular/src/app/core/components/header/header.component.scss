@@ -1,0 +1,118 @@
+.wrapper {
+  width: 100%;
+  height: 5.44rem;
+  background-color: var(--accent-color);
+  box-sizing: border-box;
+  padding: 0 3.4rem 0 7.8rem;
+
+  .logo {
+    cursor: pointer;
+
+    img {
+      object-fit: contain;
+      height: 2rem;
+    }
+
+    p {
+      color: var(--text-color);
+      font-family: var(--font-red-hat);
+      font-weight: 800;
+      font-size: 1.5rem;
+    }
+  }
+
+  a {
+    color: var(--text-color);
+    font-family: var(--font-red-hat);
+    font-weight: 900;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+    display: inline-block;
+
+    &:hover {
+      color: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    &.active {
+      color: var(--primary-color);
+      font-weight: 900;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.5);
+    }
+  }
+}
+
+.login-button {
+  width: 107px;
+  height: 50px;
+  cursor: pointer;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  transition: box-shadow 1s ease, background-color 1s ease, color 1s ease;
+
+  &:before {
+    content: "";
+    background: var(--primary-color);
+    position: absolute;
+    z-index: -1;
+    top: -30px;
+    right: -30px;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+  }
+
+  &:hover:before {
+    transform: scale(50);
+  }
+
+  &:hover {
+    color: white;
+
+    p {
+      color: white;
+    }
+  }
+  p {
+    font-family: var(--font-red-hat);
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 900;
+  }
+}
+
+.profileButton {
+  cursor: pointer;
+  background-color: var(--accent-color);
+  padding: 0.2rem 0.8rem 0.2rem 0.4rem;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  font-family: var(--font-red-hat);
+  color: var(--primary-color);
+  font-weight: 900;
+  .profilePicture {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--border-radius);
+    object-fit: scale-down;
+    margin-right: 0.5rem;
+  }
+  i{
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 900;
+    margin-left: 0.8rem;
+  }
+}

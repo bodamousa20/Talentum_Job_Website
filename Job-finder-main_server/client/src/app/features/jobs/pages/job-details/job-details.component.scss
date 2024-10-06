@@ -1,0 +1,206 @@
+.pageHeading {
+  width: 100%;
+  height: 11.2rem;
+  background: url("../../../../../assets/images/hero-pattern.svg") no-repeat;
+  background-color: var(--accent-color);
+  overflow: hidden;
+  background-position-x: 155%;
+  display: flex;
+  .pageTitle {
+    font-size: 4.5rem;
+  }
+
+  .curlyLine {
+    img {
+      width: 30rem;
+      height: 100%;
+    }
+  }
+}
+.content {
+  padding: 1rem 4rem;
+  .jobHeader {
+    border-radius: var(--border-radius);
+    width: 100%;
+    padding: 1.5rem;
+    .timeAndSave {
+      margin-bottom: 2rem;
+      .timeAdded {
+        color: var(--primary-color);
+        background-color: var(--dark-accent-color);
+        font-family: var(--font-clash-variable);
+        border-radius: var(--border-radius);
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.5rem;
+      }
+
+      .appliedTag {
+        display: flex;
+        font-family: var(--font-clash-variable);
+        color: #179a56;
+        background-color: #32de8549;
+        padding: 0.5rem;
+        width: 10rem;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+    }
+
+    .companyLogoContainer {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 4rem;
+      overflow: hidden;
+    }
+
+    .companyLogoContainer img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .jobTitle {
+      color: var(--text-color);
+      font-family: var(--font-clash-semibold);
+      font-size: 2.5rem;
+    }
+
+    .company {
+      color: var(--grey-color);
+      font-family: var(--font-clash-variable);
+      font-weight: 500;
+      font-size: 1.3rem;
+      cursor: pointer;
+      i {
+        color: var(--primary-color);
+        font-weight: 900;
+      }
+    }
+
+    .jobData {
+      gap: 1.5rem;
+      .data {
+        font-family: var(--font-clash-variable);
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-color);
+        display: flex;
+        direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        i {
+          padding: 0.3rem;
+          margin-right: 0.3rem;
+          color: var(--primary-color);
+          font-size: 1.2rem;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+
+  .sectionTitle {
+    font-family: var(--font-clash-variable);
+    color: var(--text-color);
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  .jobDetails {
+    flex: 3;
+    padding: 1rem;
+    .jobDetailsCard {
+      padding: 2rem;
+      border: 1px dashed var(--primary-color);
+      border-radius: var(--border-radius);
+      .detailsItem {
+        .sectionContent {
+          font-family: var(--font-red-hat);
+          color: var(--grey-color);
+          font-weight: 600;
+          font-size: 1.2rem;
+          ul {
+            margin: 0.4rem 0;
+            padding-left: 1.2rem;
+          }
+          li {
+            margin-bottom: 0.8rem;
+            &::marker {
+              color: var(--primary-color);
+              font-size: 1.2rem;
+            }
+          }
+
+          .tag {
+            font-family: var(--font-clash-variable);
+            color: var(--primary-color);
+            background-color: var(--dark-accent-color);
+            border-radius: var(--border-radius);
+            padding: 0.5rem 0.8rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+
+    .relatedJobs {
+      .title {
+        font-family: var(--font-clash-variable);
+        color: var(--text-color);
+        font-size: 3rem;
+        font-weight: 600;
+        padding: 1rem;
+        margin: 3rem 0 1rem 0;
+      }
+    }
+  }
+
+  .jobOverview {
+    flex: 1;
+    padding: 1rem;
+    height: auto;
+    .jobOverviewCard {
+      background: url("../../../../../assets/images/hero-pattern.svg") no-repeat;
+      background-size: 70rem;
+      background-repeat: repeat;
+      background-position: -60% 0;
+      background-blend-mode: color-dodge;
+      background-color: var(--accent-color);
+      border-radius: var(--border-radius);
+      width: 100%;
+      height: auto;
+      padding: 2rem;
+      gap: 2.5rem;
+      .overViewItem {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        i {
+          color: var(--primary-color);
+          font-size: 1.5rem;
+          padding: 0.5rem;
+        }
+        .title {
+          font-family: var(--font-clash-variable);
+          color: var(--text-color);
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+        .subTitle {
+          font-family: var(--font-clash-variable);
+          color: var(--grey-color);
+          font-size: 1rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

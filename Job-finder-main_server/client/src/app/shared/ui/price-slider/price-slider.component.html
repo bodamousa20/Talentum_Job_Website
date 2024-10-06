@@ -1,0 +1,39 @@
+<div class="double-slider-box">
+  <div class="range-slider">
+    <input
+      type="range"
+      class="min-val"
+      [(ngModel)]="minValue"
+      (input)="slideMin()"
+      min="0"
+      max="10000"
+    />
+    <input
+      type="range"
+      class="max-val"
+      [(ngModel)]="maxValue"
+      (input)="slideMax()"
+      min="0"
+      max="10000"
+    />
+    <div class="slider-track"></div>
+    <div class="min-tooltip"></div>
+    <div class="max-tooltip"></div>
+  </div>
+  <div class="input-box">
+    <input
+      value="{{ minValue }}"
+      type="number"
+      class="min-input"
+      [(ngModel)]="minInputValue"
+      (input)="setMinInput()"
+    />
+    <input
+      value="{{ maxValue }}"
+      type="number"
+      class="max-input"
+      [(ngModel)]="maxInputValue"
+      (input)="setMaxInput()"
+    />
+  </div>
+</div>

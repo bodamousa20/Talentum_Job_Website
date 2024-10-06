@@ -1,0 +1,19 @@
+<button
+  class="row full-center button"
+  [class.selected]="isSelected"
+  (click)="onClick()"
+  [style.width]="width"
+  [style.height]="height"
+  [style.background-color]="backgroundColor"
+>
+  <div
+    class="row gap-1"
+    [style.font-size]="fontSize"
+    [style.font-weight]="fontWeight"
+  >
+    <i *ngIf="icon != null" class="pi {{ icon }}"></i>
+    <p *ngIf="label != null">
+      {{ label }}
+    </p>
+  </div>
+</button>

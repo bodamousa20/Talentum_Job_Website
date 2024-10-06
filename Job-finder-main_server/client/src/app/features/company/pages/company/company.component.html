@@ -1,0 +1,299 @@
+<!-- Page Heading -->
+<div class="pageHeading">
+  <!-- company profile picture -->
+  <div class="full-center companyProfilePic">
+    <img class="image" src="{{ company ? company.logo : '' }}" />
+  </div>
+</div>
+
+<!-- Company Declaration -->
+<div style="padding: 0 3rem 0 0" class="row space-between align-center">
+  <div class="companyDeclaration">
+    <div class="companyName">
+      {{ company ? company.name : "" }}
+      <i class="pi pi-verified icon"></i>
+    </div>
+    <h3 class="title gap-025">&#64; {{ company ? company.name : "" }}</h3>
+  </div>
+  <app-animated-button
+    *ngIf="role === 'company' && companyId === storage.getCompanyId()"
+    label="Add Job"
+    width="21.75rem"
+    height="2.8rem"
+    backgroundColor="var(--primary-color)"
+    fontSize="1.1rem"
+    fontWeight="700"
+    routerLink="add-job"
+  ></app-animated-button>
+</div>
+
+<!-- Content -->
+<div class="content">
+  <!-- Details and Job Overview -->
+  <div class="column companyInfo mt-15">
+    <!-- Left Column: company Details -->
+    <section id="basicInfo">
+      <div class="column gap-1 basicInfo">
+        <div class="row gap-1 sectionTitle">
+          <i class="pi pi-building-columns"></i>
+          <span>Basic Information</span>
+        </div>
+        <div class="infoGrid">
+          <!-- company website -->
+          <div class="infoItem">
+            <span class="title">
+              <i class="pi pi-globe"></i>
+              <span>Website</span>
+            </span>
+            <span class="subTitle">{{ company ? company.website : "" }}</span>
+          </div>
+          <!-- Email Address -->
+          <div class="infoItem">
+            <span class="title">
+              <i class="pi pi-envelope"></i>
+              <span>Email Address</span>
+            </span>
+            <span class="subTitle">{{ company ? company.email : "" }}</span>
+          </div>
+          <!-- Phone Number -->
+          <div class="infoItem">
+            <span class="title">
+              <i class="pi pi-building"></i>
+              <span>Industry</span>
+            </span>
+            <span class="subTitle">{{ company ? company.industry : "" }}</span>
+          </div>
+          <!-- Date of Birth -->
+          <div class="infoItem">
+            <span class="title">
+              <i class="pi pi-map-marker"></i>
+              <span>Headquarters</span>
+            </span>
+            <span class="subTitle">{{ company ? company.location : "" }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Job Applicants -->
+    <section *ngIf="companyId === storage.getCompanyId()" id="applicants">
+      <div class="title">Applicants</div>
+      <div class="column gap-1 applicants">
+        <!-- user -->
+        <div *ngFor="let applicant of paginatedApplicants" class="column">
+          <!-- User -->
+          <div class="column gap-1 applicant">
+            <div class="row gap-1 space-between">
+              <!-- user name , email and image -->
+              <div class="row gap-1">
+                <!-- user image -->
+                <img class="image" src="assets\images\user.svg" />
+                <!-- user name and email -->
+                <div class="column">
+                  <span class="name">{{
+                    applicant.user.firstName + " " + applicant.user.lastName
+                  }}</span>
+                  <span class="email">{{ applicant.user.email }}</span>
+                </div>
+              </div>
+              <!-- user actions -->
+              <div class="row gap-05">
+                <!-- linkedIn -->
+                <a href="{{ 'https://www.google.com/' }}" target="_blank">
+                  <!-- <a href="{{ applicant.linkedInLink }}" target="_blank"> -->
+                  <app-animated-button
+                    icon="pi pi-linkedin"
+                    backgroundColor="transparent"
+                    fontSize="1rem"
+                    fontWeight="700"
+                  ></app-animated-button>
+                </a>
+                <!-- Github -->
+                <a href="{{ 'https://www.google.com/' }}" target="_blank">
+                  <!-- <a href="{{ applicant.githubLink }}" target="_blank"> -->
+                  <app-animated-button
+                    backgroundColor="transparent"
+                    icon="pi pi-github"
+                    fontSize="1rem"
+                    fontWeight="700"
+                  ></app-animated-button>
+                </a>
+                <!-- View Profile -->
+                <app-animated-button
+                  label="View Profile"
+                  width="8rem"
+                  backgroundColor="transparent"
+                  fontSize="1rem"
+                  fontWeight="700"
+                  (click)="viewProfile(applicant.user.id!)"
+                ></app-animated-button>
+              </div>
+            </div>
+          </div>
+          <!-- Job -->
+          <app-full-job-card
+            style="
+              background-color: var(--accent-color);
+              border-bottom-left-radius: var(--border-radius);
+              border-bottom-right-radius: var(--border-radius);
+            "
+            [job]="applicant.job"
+          ></app-full-job-card>
+        </div>
+        <p-paginator
+          *ngIf="!(paginatedApplicants.length === 0)"
+          [first]="first"
+          [rows]="rows"
+          [totalRecords]="totalRecords"
+          (onPageChange)="onPageChange($event, 'applicants')"
+          [styleClass]="'paginator'"
+        ></p-paginator>
+      </div>
+
+      <!-- No Applicants -->
+      <div
+        *ngIf="applicants ? applicants.length == 0 : false"
+        class="column full-center gap-2 noCreatedJobsCard"
+      >
+        <div class="column full-center gap-2 noCreatedJobsContent">
+          <!-- no one applied -->
+          <div
+            *ngIf="
+              role === 'company' &&
+              companyId === storage.getCompanyId() &&
+              createdJobs?.length !== 0
+            "
+            class="row gap-1 full-center sentence"
+          >
+            <span>No One Has Applied To Any Jobs Yet!</span>
+          </div>
+          <!-- you haven't posted any jobs -->
+          <div
+            *ngIf="
+              role === 'company' &&
+              companyId === storage.getCompanyId() &&
+              createdJobs?.length === 0
+            "
+            class="row gap-1 full-center sentence"
+          >
+            <i class="pi pi-times-circle"></i>
+            <span>You Haven't Posted Any Jobs Yet!</span>
+          </div>
+          <!-- <img src="assets/images/No-Added.svg" /> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Created Jobs -->
+    <section id="createdJobs">
+      <div class="title">Created Jobs</div>
+      <div class="column gap-2 jobs">
+        <div *ngFor="let job of paginatedJobs" class="column">
+          <app-full-job-card
+            style="
+              background-color: var(--accent-color);
+              border-top-left-radius: var(--border-radius);
+              border-top-right-radius: var(--border-radius);
+            "
+            [job]="job"
+          ></app-full-job-card>
+          <!-- Numbers -->
+          <div class="column gap-1 nums">
+            <div class="row gap-1 space-between">
+              <div class="row gap-05 align-center">
+                <span class="full-center num">{{ job.numOfApplicants }}</span>
+                <span class="text">Applicants</span>
+              </div>
+            </div>
+          </div>
+          <!-- Job -->
+        </div>
+        <p-paginator
+          *ngIf="!(paginatedJobs.length === 0)"
+          [first]="first"
+          [rows]="rows"
+          [totalRecords]="totalRecords"
+          (onPageChange)="onPageChange($event, 'createdJobs')"
+          [styleClass]="'paginator'"
+        ></p-paginator>
+      </div>
+
+      <!-- No Created Jobs -->
+      <div
+        *ngIf="createdJobs ? createdJobs.length == 0 : false"
+        class="column full-center gap-2 noCreatedJobsCard"
+      >
+        <div class="column full-center gap-2 noCreatedJobsContent">
+          <div class="row gap-1 full-center sentence">
+            <i class="pi pi-times-circle"></i>
+            <span
+              *ngIf="role === 'company' && companyId === storage.getCompanyId()"
+              >You Haven't Posted Any Jobs Yet!</span
+            >
+            <span *ngIf="!(companyId === storage.getCompanyId())"
+              >This Company Haven't Posted Any Jobs Yet!</span
+            >
+          </div>
+          <img src="assets/images/No-Added.svg" />
+          <app-animated-button
+            *ngIf="role === 'company' && companyId === storage.getCompanyId()"
+            label="Add Job Now"
+            width="21.75rem"
+            height="2.8rem"
+            backgroundColor="var(--primary-color)"
+            fontSize="1.1rem"
+            fontWeight="700"
+            routerLink="add-job"
+          ></app-animated-button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Right Column: company Navigation -->
+  <div class="column companyNav">
+    <div class="column gap-1 companyNavCard">
+      <div
+        class="navTile"
+        (click)="goTo('basicInfo')"
+        style="border-top-right-radius: 1.5rem; border-top-left-radius: 1.5rem"
+      >
+        <i class="pi pi-address-book"></i>
+        <span>Basic Information</span>
+      </div>
+      <div
+        *ngIf="companyId === storage.getCompanyId()"
+        class="navTile"
+        (click)="goTo('applicants')"
+      >
+        <i class="pi pi-user"></i>
+        <span>Applicants</span>
+      </div>
+      <div
+        class="navTile"
+        (click)="goTo('createdJobs')"
+        style="
+          border-bottom-right-radius: 1.5rem;
+          border-bottom-left-radius: 1.5rem;
+        "
+      >
+        <i class="pi pi-bookmark"></i>
+        <span>Created Jobs</span>
+      </div>
+    </div>
+
+    <!-- Number of Applicants -->
+    <div class="column gap-1 full-center applicantsCount companyNavCard">
+      <i class="pi pi-user"></i>
+      <span>Number of Applicants</span>
+      <span class="num">{{ applicants.length }}</span>
+    </div>
+
+    <!-- Number of Created Jobs -->
+    <div class="column gap-1 full-center jobsCount companyNavCard">
+      <i class="pi pi-briefcase"></i>
+      <span>Created Jobs</span>
+      <span class="num">{{ createdJobs.length }}</span>
+    </div>
+  </div>
+</div>

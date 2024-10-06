@@ -1,0 +1,227 @@
+<div class="background">
+  <div class="cardContent column gap-2">
+    <h1 class="welcome">Add new Job</h1>
+    <form [formGroup]="addJobForm">
+      <!-- Inputs -->
+      <div class="inputs">
+        <!-- Job Title -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="title"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+            [pKeyFilter]="blockChars"
+          />
+          <label class="floatingLabel">Job Title</label>
+        </div>
+
+        <!-- Company Name -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="name"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          />
+          <label class="floatingLabel">Company Name</label>
+        </div>
+
+        <!-- Category -->
+        <div class="floatingLabelContent">
+          <select
+            formControlName="category"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          >
+            <option value="" disabled [selected]="true">Select Category</option>
+            <option
+              *ngFor="let category of categories"
+              value="{{ category.id }}"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+
+          <label class="floatingLabel">Category</label>
+        </div>
+
+        <!-- Job Type -->
+        <div class="floatingLabelContent">
+          <select
+            formControlName="type"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          >
+            <option [defaultSelected]="true" disabled>Select Job Type</option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
+            <option value="Internship">Internship</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Contract">Contract</option>
+          </select>
+          <label class="floatingLabel">Job Type</label>
+        </div>
+
+        <!-- Experience -->
+        <div class="floatingLabelContent">
+          <select
+            formControlName="experience"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          >
+            <option [defaultSelected]="true" disabled>Select Experience</option>
+            <option value="No Experience">No Experience</option>
+            <option value="Entry Level">Entry Level</option>
+            <option value="Junior Level">Junior Level</option>
+            <option value="Senior Level">Senior Level</option>
+          </select>
+          <label class="floatingLabel">Experience</label>
+        </div>
+
+        <!-- Gender -->
+        <div class="floatingLabelContent">
+          <select
+            formControlName="gender"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          >
+            <option [defaultSelected]="true" disabled>Select Gender</option>
+            <option value="Any">Any</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <label class="floatingLabel">Gender</label>
+        </div>
+
+        <!-- Location -->
+        <div class="floatingLabelContent">
+          <input
+            formControlName="location"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+            pInputText
+            [pKeyFilter]="blockChars"
+          />
+          <label class="floatingLabel">Location</label>
+          <p class="popUp">City, Country (eg: Cairo, Egypt)</p>
+        </div>
+
+        <!-- Salary -->
+        <div class="column">
+          <div class="row gap-1">
+            <div class="floatingLabelContent">
+              <input
+                formControlName="minSalary"
+                class="floatingLabelInput"
+                type="text"
+                placeholder=""
+                pInputText
+                pKeyFilter="int"
+              />
+              <label class="floatingLabel">Min. Salary</label>
+            </div>
+            <div class="floatingLabelContent">
+              <input
+                formControlName="maxSalary"
+                class="floatingLabelInput"
+                type="text"
+                placeholder=""
+                pInputText
+                pKeyFilter="int"
+              />
+              <label class="floatingLabel">Max. Salary</label>
+            </div>
+            <div class="floatingLabelContent">
+              <select
+                formControlName="salaryCurrency"
+                class="floatingLabelInput"
+                type="text"
+                placeholder=""
+                style="padding-left: 0.5rem; padding-right: 0rem; width: 5rem"
+              >
+                <option [defaultSelected]="true" disabled>
+                  Select Currency
+                </option>
+                <option value="$">USD $</option>
+                <option value="LE">EGP LE</option>
+                <option value="€">EUR €</option>
+                <option value="¥">JPY ¥</option>
+                <option value="£">GBP £</option>
+                <option value="₣">CFA ₣</option>
+              </select>
+            </div>
+          </div>
+          <p class="popUp">Salary per Year</p>
+        </div>
+      </div>
+      <!-- Text Areas -->
+      <div class="textAreas">
+        <!-- Job Description -->
+        <div class="floatingLabelContent">
+          <textarea
+            formControlName="description"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          ></textarea>
+          <label class="floatingLabel">Detailed Job Description</label>
+        </div>
+
+        <!-- Responsibilities -->
+        <div class="floatingLabelContent">
+          <textarea
+            formControlName="responsibilities"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          ></textarea>
+          <label class="floatingLabel">Responsibilities</label>
+          <p class="popUp">Separated by , or .</p>
+        </div>
+
+        <!-- Qualifications or Professional Skills -->
+        <div class="floatingLabelContent">
+          <textarea
+            formControlName="qualifications"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          ></textarea>
+          <label class="floatingLabel"
+            >Qualifications or Professional Skills</label
+          >
+          <p class="popUp">Separated by , or .</p>
+        </div>
+
+        <!-- Benefits (Optional) -->
+        <div class="floatingLabelContent">
+          <textarea
+            formControlName="benefits"
+            class="floatingLabelInput"
+            type="text"
+            placeholder=""
+          ></textarea>
+          <label class="floatingLabel">Benefits (Optional)</label>
+          <p class="popUp">Separated by , or .</p>
+        </div>
+      </div>
+    </form>
+    <app-animated-button
+      label="Add Job"
+      type="submit"
+      width="100%"
+      height="2.8rem"
+      backgroundColor="var(--primary-color)"
+      fontSize="1.1rem"
+      fontWeight="700"
+      (click)="addJob()"
+    ></app-animated-button>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<header class="wrapper row align-center space-between">
+  <!-- Logo -->
+  <div class="row gap-05 align-center logo" routerLink="">
+    <img src="assets/images/Logo.svg" />
+    <p>Talentum</p>
+  </div>
+
+  <!-- Navigation -->
+  <div class="row gap-1">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a (click)="goToCategories()" [style.cursor]="'pointer'">Categories</a>
+    <a routerLink="/jobs" routerLinkActive="active">Jobs</a>
+    <a  routerLinkActive="active">Companies</a>
+  </div>
+
+  <!-- Buttons -->
+  <div *ngIf="!isLoggedIn" class="row gap-1">
+    <!-- Login Button -->
+    <button class="login-button" routerLink="/login">
+      <p>Log in</p>
+    </button>
+    <!-- Signup Button -->
+    <app-animated-button
+      label="Sign Up"
+      width="6.6875rem"
+      height="3.125rem"
+      backgroundColor="var(--primary-color)"
+      fontSize="1rem"
+      fontWeight="800"
+      routerLink="/signup"
+    ></app-animated-button>
+  </div>
+  <div *ngIf="isLoggedIn" class="row  align-center profileButton">
+    <!-- user profile implementation-->
+    <img
+      [src]="logoUrl"
+      class="profilePicture"
+      alt="profile picture"
+      (click)="openProfile()"
+    />
+    <!-- User Name -->
+    <p class="name" (click)="openProfile()">
+      {{ loggedInEntity?.firstName || loggedInEntity?.name }}
+    </p>
+    <!-- arrow down -->
+    <i (click)="logout()" class="pi pi-sign-out"></i>
+  </div>
+</header>
